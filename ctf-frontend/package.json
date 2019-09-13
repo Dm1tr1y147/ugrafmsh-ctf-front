@@ -1,7 +1,7 @@
 {
   "name": "ctf-frontend",
   "version": "1.0.0",
-  "description": "UFML ctf cources frontend",
+  "description": "A Vue.js project",
   "author": "Dm1tr1y147 <me@dmitriy.icu>",
   "private": true,
   "scripts": {

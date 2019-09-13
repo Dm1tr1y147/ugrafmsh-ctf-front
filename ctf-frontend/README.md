@@ -1,6 +1,6 @@
 # ctf-frontend
 
-> UFML ctf cources frontend
+> A Vue.js project
 
 ## Build Setup
 
