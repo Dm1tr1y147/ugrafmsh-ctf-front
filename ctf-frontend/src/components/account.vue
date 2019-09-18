@@ -1,12 +1,10 @@
-<template lang="pug">
-//
-//  Тут будет борщ
-//
+<template>
+  
 </template>
 
 <script>
 export default {
-    name: 'index',
+    name: 'account',
     data () {
         return {
             

@@ -6,6 +6,7 @@ import register from '@/components/register'
 import scoreboard from '@/components/scoreboard'
 import taskList from '@/components/taskList'
 import task from '@/components/task'
+import account from '@/components/account'
 
 
 Vue.use(Router)
@@ -42,6 +43,11 @@ export default new Router({
             path: '/task',
             name: 'task',
             component: task
-        }
+        },
+        {
+            path: '/tausk',
+            name: 'account',
+            component: account
+        },
     ]
 })
