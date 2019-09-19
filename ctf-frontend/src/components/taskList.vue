@@ -1,19 +1,40 @@
-<template>
-  
+<template lang="pug">
+ul
+    li(v-for="item in list")
+        h1(v-on:click="open(item.id)") {{ item.name }}
+        h2 {{ item.cost }}
+        span {{ item.category }}
 </template>
 
 <script>
+import vueCookies from 'vue-cookies'
+import router from '../router/index'
+import {HTTP} from '../http-common'
+
 export default {
-    name: 'index',
+    name: 'taskList',
     data () {
         return {
-            msg: 'index'
+            list: {}
+        }
+    },
+    mounted() {
+        HTTP.get('tasks')
+        .then(response => {
+            this.list = response.data.tasks
+        })
+        .catch(e => {
+            console.log(e)
+        })
+    },
+    methods: {
+        open(identificator) {
+            router.push({ name: 'task', params: { taskID: identificator } })
         }
     }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

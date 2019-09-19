@@ -1,19 +1,34 @@
-<template>
-  
+<template lang="pug">
+table
+    tr(v-for="user in this.list")
+        td(v-for="characteristics in user")
 </template>
 
 <script>
+import vueCookies from 'vue-cookies'
+import router from '../router/index'
+import {HTTP} from '../http-common'
+
 export default {
-    name: 'index',
+    name: 'scoreboard',
     data () {
         return {
-            msg: 'index'
+            list: {}
         }
+    },
+    mounted() {
+        HTTP.get('scoreboard')
+        .then(response => {
+            this.list = response.data.users
+        })
+        .catch(e => {
+            console.log(e)
+        })
     }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 
 </style>

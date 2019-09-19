@@ -1,34 +1,33 @@
 <template lang="pug">
 nav
-    h1 CTFЦТФ {{ auth.username }}
+    h1 CTFЦТФ
     ul
         li(v-for="item in mainNavbar")
             router-link(:to="item.component") {{item.name}}
     ul(v-if="isLoggedIn")
         li 
-            rouuter-link(to="cabinet") Личный кабинет
-        li(v-on:click="logOut()")
-    ul(v-if="!(isLoggedIn)")
+            router-link(to="account") Личный кабинет
         li
-            router-link(to="login")
+            a(v-on:click="logOut()") Выход
+    ul(v-if="!isLoggedIn")
         li
-            router-link(to="register")
+            router-link(to="login") Вход
+        li
+            router-link(to="register") Регистрация
 </template>
 
 <script>
+import router from '../router/index'
+
 export default {
     name: 'navbar',
-    props: {
-        auth: {
-            type: Object
-        }
-    },
     data () {
         return {
+            isLoggedIn: false,
             mainNavbar: {
                 home: {
                     name: "Главная",
-                    component: "index"
+                    component: "/"
                 },
                 scoreboard: {
                     name: "Статистика",
@@ -48,17 +47,41 @@ export default {
 
         }
     },
-    methods: {
-        logOut: function() {
-            console.log("Log out");
-        },
-        not: function() { },
-        isLoggedIn: function() { return true}
+    watch: {
+        '$route' (to, from) {
+            if(window.$cookies.get('token')) {
+                this.isLoggedIn = true
+            }
+        }
     },
+    methods: {
+        logOut () {
+            window.$cookies.remove('token')
+            window.$cookies.remove('username')
+            this.isLoggedIn = false
+            router.push("login")
+        }
+    },
+    mounted() {
+        if(window.$cookies.get('token')) {
+            this.isLoggedIn = true
+        } else {
+            this.isLoggedIn = false
+        }
+    }
 }
+
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
 
+<style scoped>
+li, ul, h1 {
+    display: inline;
+}
+li {
+    padding: 10px;
+}
+ul {
+    padding: 10px;
+}
 </style>

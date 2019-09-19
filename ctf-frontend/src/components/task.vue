@@ -1,19 +1,48 @@
-<template>
-  
+<template lang="pug">
+div
+    h1 {{task.name}}
+    p {{task.description}}
+    span {{task.category}}
+    span {{task.cost}}
+    span(v-if="task.solved") Решено
+    ul(v-for="name in task.solved_by")
+        li {{name}}
 </template>
 
 <script>
+import vueCookies from 'vue-cookies'
+import router from '../router/index'
+import {HTTP} from '../http-common'
+
 export default {
-    name: 'index',
+    name: 'task',
     data () {
         return {
-            msg: 'index'
+            task: {}
         }
+    },
+    props: {
+        taskID: {
+            type: Number
+        }
+    },
+    mounted() {
+        HTTP.get('task', {
+            params: {
+                id: this.taskID
+            }
+        })
+        .then(response => {
+            this.task = response.data
+        })
+        .catch(e => {
+            console.log(e)
+        })
     }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 
 </style>
