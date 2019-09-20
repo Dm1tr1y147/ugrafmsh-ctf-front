@@ -1,21 +1,29 @@
-# ctf-frontend
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies with Yarn (yarnpkg.com)
-yarn
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+# Я тоже не верю в то, что это будет готово, но давайте.
+1. Первым делом, ставим [node](https://nodejs.org/en/download/) и (опционально [yarn](https://yarnpkg.com/latest.msi))
+2. Заходим в папку с проектом
+```bash
+cd ctf-frontend
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+3.1 Если ставил yarn, то это:
+    yarn
+3.2 Иначе:
+```bash
+npm i
+```
+4 Запускаем это нечто...
+```bash
+npm run dev
+```
+# Тут немного про то, что там происходит
++ `src/main.js` - здесь всякая фигня, тебе это не особо надо
++ `src/app.vue` - сюла подключаешь все глобальные стили, какие-либо скрипты
++ `router/index.js` - роутер, тоже не особо интересно
++ `src/components/*.vue` - все компоненты. В каждом файле есть тэг, в котором хранятся стили, и в него стоит писать только стили, применяемые конкретно к этому компоненту, глобально, они не применяются
++ `src/assets` - сюда закидывай всякие картиночки, шрифты, стили отдельными файлами. В обшем, отаю папку в твоё польщование
+# Что касается сборки
+Тут с webpack теперь всё хорошо, можно брать только папку `dist`
+Запускать тоже из основной папки проекта:
+```bash
+npm run build
+```
+# Удачи, надеюсь, что-то получится
