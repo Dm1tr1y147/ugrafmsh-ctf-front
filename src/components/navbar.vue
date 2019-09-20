@@ -1,6 +1,6 @@
 <template lang="pug">
 nav
-    h1 CTFЦТФ
+    h1 CTF ЦТФ
     ul
         li(v-for="item in mainNavbar")
             router-link(:to="item.component") {{item.name}}
@@ -75,13 +75,16 @@ export default {
 
 
 <style scoped>
-li, ul, h1 {
-    display: inline;
-}
-li {
-    padding: 10px;
+nav {
+    background-color: #17A2B8;
+    display: grid;
+    width: 100vw;
+    grid-template-rows: 10vh;
+    grid-template-columns: max-content max-content max-content;
 }
 ul {
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
 }
+
 </style>

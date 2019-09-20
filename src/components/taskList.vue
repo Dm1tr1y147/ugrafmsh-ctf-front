@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         open(identificator) {
-            router.push({ name: 'task', params: { taskID: identificator } })
+            router.push({path: "task", name: 'task', params: { id: identificator } })
         }
     }
 }
